@@ -1,0 +1,254 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design System - Plateforme Admissions Scolaires
+   Palette: Warm oranges and browns - Professional and welcoming
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Primary - Carrot Orange */
+    --primary: 30 88% 54%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary - Ochre */
+    --secondary: 31 75% 48%;
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Accent - Bourbon */
+    --accent: 32 73% 43%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Background & Surfaces */
+    --background: 30 20% 98%;
+    --foreground: 20 51% 16%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 20 51% 16%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 51% 16%;
+    
+    /* Muted - Soft warm gray */
+    --muted: 30 15% 94%;
+    --muted-foreground: 20 20% 45%;
+    
+    /* Cork tones */
+    --cork: 20 51% 16%;
+    --cork-light: 24 37% 19%;
+    --walnut: 24 59% 27%;
+    --rope: 30 65% 33%;
+    --metallic-bronze: 27 53% 23%;
+    
+    /* Status colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 38 92% 50%;
+    --warning-foreground: 20 51% 16%;
+    
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --info: 210 80% 52%;
+    --info-foreground: 0 0% 100%;
+    
+    /* Border & Input */
+    --border: 30 20% 88%;
+    --input: 30 20% 88%;
+    --ring: 30 88% 54%;
+    
+    --radius: 0.625rem;
+    
+    /* Sidebar */
+    --sidebar-background: 20 51% 16%;
+    --sidebar-foreground: 30 15% 94%;
+    --sidebar-primary: 30 88% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 24 37% 22%;
+    --sidebar-accent-foreground: 30 15% 94%;
+    --sidebar-border: 24 37% 25%;
+    --sidebar-ring: 30 88% 54%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(30 88% 54%) 0%, hsl(31 75% 48%) 100%);
+    --gradient-dark: linear-gradient(135deg, hsl(20 51% 16%) 0%, hsl(24 37% 22%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(30 88% 54% / 0.1) 0%, hsl(31 75% 48% / 0.05) 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(20 51% 16% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(20 51% 16% / 0.08), 0 2px 4px -2px hsl(20 51% 16% / 0.05);
+    --shadow-lg: 0 10px 15px -3px hsl(20 51% 16% / 0.08), 0 4px 6px -4px hsl(20 51% 16% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(20 51% 16% / 0.1), 0 8px 10px -6px hsl(20 51% 16% / 0.05);
+    --shadow-glow: 0 0 20px hsl(30 88% 54% / 0.3);
+  }
+
+  .dark {
+    --primary: 30 88% 54%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 31 75% 48%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --accent: 32 73% 43%;
+    --accent-foreground: 0 0% 100%;
+    
+    --background: 20 51% 10%;
+    --foreground: 30 15% 94%;
+    
+    --card: 20 51% 14%;
+    --card-foreground: 30 15% 94%;
+    
+    --popover: 20 51% 14%;
+    --popover-foreground: 30 15% 94%;
+    
+    --muted: 20 30% 20%;
+    --muted-foreground: 30 15% 65%;
+    
+    --border: 20 30% 25%;
+    --input: 20 30% 25%;
+    --ring: 30 88% 54%;
+    
+    --sidebar-background: 20 51% 8%;
+    --sidebar-foreground: 30 15% 94%;
+    --sidebar-primary: 30 88% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 20 30% 15%;
+    --sidebar-accent-foreground: 30 15% 94%;
+    --sidebar-border: 20 30% 20%;
+    --sidebar-ring: 30 88% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, sans-serif;
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .card-elevated {
+    @apply bg-card rounded-xl border border-border;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .card-elevated:hover {
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-dark {
+    background: var(--gradient-dark);
+  }
+  
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .stat-card {
+    @apply bg-card rounded-xl border border-border p-6 transition-all duration-300;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .stat-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .status-pending {
+    @apply bg-warning/15 text-warning;
+  }
+  
+  .status-validated {
+    @apply bg-success/15 text-success;
+  }
+  
+  .status-rejected {
+    @apply bg-destructive/15 text-destructive;
+  }
+  
+  .table-container {
+    @apply bg-card rounded-xl border border-border overflow-hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .page-header {
+    @apply mb-8;
+  }
+  
+  .page-title {
+    @apply text-2xl font-bold text-foreground;
+  }
+  
+  .page-subtitle {
+    @apply text-muted-foreground mt-1;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes scaleIn {
+    from { 
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to { 
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

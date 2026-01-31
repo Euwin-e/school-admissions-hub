@@ -155,14 +155,7 @@ export const Footer = () => {
 
         {/* Contact and Quick Links */}
         <div className="grid md:grid-cols-3 gap-12 mb-8">
-          {/* P.D.A.U Info */}
-          <div>
-            <h3 className="text-amber-600 font-bold mb-3">P.D.A.U</h3>
-            <p className="text-gray-400 text-sm">
-              Plateforme moderne de digitalisation des admissions universitaires.
-            </p>
-          </div>
-
+  
           {/* Quick Links */}
           <div>
             <h3 className="text-amber-600 font-bold mb-3">Liens Rapides</h3>
@@ -214,9 +207,6 @@ export const Footer = () => {
 
         {/* Copyright */}
         <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-xs">
-          <p>
-            © 2026 P.D.A.U - Hackathon Campus Baobab - Tous droits réservés
-          </p>
           <p className="mt-2">
             ISM, ÉTABLISSEMENT D'ENSEIGNEMENT SUPÉRIEUR PRIVÉ © 2024 - GALILEO GLOBAL EDUCATION - MENTIONS LÉGALES
           </p>

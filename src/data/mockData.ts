@@ -113,7 +113,7 @@ export const mockApplications: Application[] = [
     address: 'Dakar, Plateau',
     schoolId: '1',
     classId: '1',
-    status: 'pending',
+    status: 'to_validate',
     documents: [
       { id: '1', name: 'Diplôme Baccalauréat', type: 'pdf', url: '/docs/bac.pdf', uploadedAt: new Date() },
       { id: '2', name: 'Relevé de notes', type: 'pdf', url: '/docs/notes.pdf', uploadedAt: new Date() },
@@ -154,8 +154,11 @@ export const mockApplications: Application[] = [
     address: 'Thiès, Centre',
     schoolId: '2',
     classId: '5',
-    status: 'pending',
-    documents: [],
+    status: 'to_validate',
+    documents: [
+      { id: '4', name: 'Diplôme Baccalauréat', type: 'pdf', url: '/docs/bac2.pdf', uploadedAt: new Date() },
+      { id: '5', name: 'Relevé de notes', type: 'pdf', url: '/docs/notes2.pdf', uploadedAt: new Date() },
+    ],
     createdAt: new Date('2026-01-29'),
     updatedAt: new Date('2026-01-29'),
   },
@@ -292,7 +295,7 @@ export const mockApplications: Application[] = [
 // Dashboard Stats
 export const getDashboardStats = (): DashboardStats => {
   const totalApplications = mockApplications.length;
-  const pendingApplications = mockApplications.filter(a => a.status === 'pending').length;
+  const pendingApplications = mockApplications.filter(a => a.status === 'pending' || a.status === 'to_validate').length;
   const validatedApplications = mockApplications.filter(a => a.status === 'validated').length;
   const rejectedApplications = mockApplications.filter(a => a.status === 'rejected').length;
   

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,8 +7,6 @@
 /* Design System - Plateforme Admissions Scolaires
    Palette: Warm oranges and browns - Professional and welcoming
 */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
 
 @layer base {
   :root {
@@ -36,12 +36,14 @@
     --muted: 30 15% 94%;
     --muted-foreground: 20 20% 45%;
     
-    /* Cork tones */
+    /* Director Chart Colors - Bronze/Orange Palette */
+    --carrot-orange: 30 88% 54%;
     --cork: 20 51% 16%;
-    --cork-light: 24 37% 19%;
-    --walnut: 24 59% 27%;
     --rope: 30 65% 33%;
+    --bourbon: 32 73% 43%;
     --metallic-bronze: 27 53% 23%;
+    --ochre: 31 75% 48%;
+    --walnut: 24 59% 27%;
     
     /* Status colors */
     --success: 142 76% 36%;
@@ -185,6 +187,10 @@
   .status-pending {
     @apply bg-warning/15 text-warning;
   }
+
+  .status-to-validate {
+    @apply bg-info/15 text-info;
+  }
   
   .status-validated {
     @apply bg-success/15 text-success;
@@ -250,5 +256,95 @@
       opacity: 1;
       transform: scale(1);
     }
+  }
+}
+
+/* Director Chart Colors - Custom Classes */
+@layer utilities {
+  .bg-carrot-orange {
+    background-color: hsl(var(--carrot-orange));
+  }
+  .text-carrot-orange {
+    color: hsl(var(--carrot-orange));
+  }
+  .border-carrot-orange {
+    border-color: hsl(var(--carrot-orange));
+  }
+  
+  .bg-cork {
+    background-color: hsl(var(--cork));
+  }
+  .text-cork {
+    color: hsl(var(--cork));
+  }
+  .border-cork {
+    border-color: hsl(var(--cork));
+  }
+  
+  .bg-rope {
+    background-color: hsl(var(--rope));
+  }
+  .text-rope {
+    color: hsl(var(--rope));
+  }
+  .border-rope {
+    border-color: hsl(var(--rope));
+  }
+  
+  .bg-bourbon {
+    background-color: hsl(var(--bourbon));
+  }
+  .text-bourbon {
+    color: hsl(var(--bourbon));
+  }
+  .border-bourbon {
+    border-color: hsl(var(--bourbon));
+  }
+  
+  .bg-metallic-bronze {
+    background-color: hsl(var(--metallic-bronze));
+  }
+  .text-metallic-bronze {
+    color: hsl(var(--metallic-bronze));
+  }
+  .border-metallic-bronze {
+    border-color: hsl(var(--metallic-bronze));
+  }
+  
+  .bg-ochre {
+    background-color: hsl(var(--ochre));
+  }
+  .text-ochre {
+    color: hsl(var(--ochre));
+  }
+  .border-ochre {
+    border-color: hsl(var(--ochre));
+  }
+  
+  .bg-walnut {
+    background-color: hsl(var(--walnut));
+  }
+  .text-walnut {
+    color: hsl(var(--walnut));
+  }
+  .border-walnut {
+    border-color: hsl(var(--walnut));
+  }
+  
+  /* Hover variants */
+  .hover\:bg-bourbon:hover {
+    background-color: hsl(var(--bourbon));
+  }
+  .hover\:bg-metallic-bronze:hover {
+    background-color: hsl(var(--metallic-bronze));
+  }
+  .hover\:bg-rope:hover {
+    background-color: hsl(var(--rope));
+  }
+  .hover\:bg-walnut:hover {
+    background-color: hsl(var(--walnut));
+  }
+  .hover\:text-walnut:hover {
+    color: hsl(var(--walnut));
   }
 }

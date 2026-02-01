@@ -28,7 +28,7 @@ export function StudentHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b-4 border-amber-500 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white border-b-4 border-bourbon shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <button
@@ -38,13 +38,13 @@ export function StudentHeader() {
           <ISMLogo className="w-10 h-10" />
           <div>
             <h1 className="text-sm font-bold text-gray-900">ISM</h1>
-            <p className="text-xs text-amber-600 font-semibold">P.D.A.U</p>
+            <p className="text-xs text-bourbon font-semibold">P.D.A.U</p>
           </div>
         </button>
 
         {/* Center - Title */}
         <h2 className="hidden md:block text-lg font-bold text-gray-900">
-          Espace Étudiant
+          Espace Candidat
         </h2>
 
         {/* User Menu */}
@@ -52,7 +52,7 @@ export function StudentHeader() {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="flex items-center gap-2 px-2">
               <Avatar className="h-8 w-8">
-                <AvatarFallback className="bg-amber-600 text-white text-xs">
+                <AvatarFallback className="bg-bourbon text-white text-xs">
                   {getUserInitials()}
                 </AvatarFallback>
               </Avatar>

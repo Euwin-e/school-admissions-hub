@@ -22,7 +22,6 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { 
-  mockApplications, 
   mockSchools, 
   getSchoolById, 
   getClassById 
@@ -31,6 +30,13 @@ import { Application } from '@/types';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { useToast } from '@/hooks/use-toast';
+import { authService } from '@/data/mockAuth';
+import {
+  getStoredApplications,
+  directorValidateApplication,
+  directorRejectApplication,
+  clearDirectorInboxForApplication,
+} from '@/data/applicationsRepository';
 
 export default function Admissions() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -39,21 +45,32 @@ export default function Admissions() {
   const [showRejectDialog, setShowRejectDialog] = useState(false);
   const [rejectionReason, setRejectionReason] = useState('');
   const { toast } = useToast();
+  const currentUser = authService.getCurrentUser();
+  const [applications, setApplications] = useState<Application[]>(() => getStoredApplications());
 
-  // Only show pending applications for admission decisions
-  const pendingApplications = mockApplications.filter(app => {
+  // Only show applications ready for director decision (after agent step 2)
+  const pendingApplications = applications.filter(app => {
     const matchesSearch = 
       app.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       app.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       app.matricule.toLowerCase().includes(searchQuery.toLowerCase());
     
+    const directorSchoolFilter = currentUser?.role === 'director' && currentUser.schoolId
+      ? app.schoolId === currentUser.schoolId
+      : true;
     const matchesSchool = schoolFilter === 'all' || app.schoolId === schoolFilter;
-    const isPending = app.status === 'pending';
+    const isPending = app.status === 'to_validate';
 
-    return matchesSearch && matchesSchool && isPending;
+    return matchesSearch && matchesSchool && isPending && directorSchoolFilter;
   });
 
   const handleValidate = (app: Application) => {
+    if (!currentUser?.id) {
+      return;
+    }
+    directorValidateApplication(app.id, currentUser.id);
+    clearDirectorInboxForApplication(app.id);
+    setApplications(getStoredApplications());
     toast({
       title: "Candidature validée",
       description: `${app.firstName} ${app.lastName} a été admis(e) avec succès.`,
@@ -63,6 +80,11 @@ export default function Admissions() {
 
   const handleReject = () => {
     if (selectedApplication) {
+      if (currentUser?.id) {
+        directorRejectApplication(selectedApplication.id, currentUser.id, rejectionReason);
+        clearDirectorInboxForApplication(selectedApplication.id);
+        setApplications(getStoredApplications());
+      }
       toast({
         title: "Candidature rejetée",
         description: `La candidature de ${selectedApplication.firstName} ${selectedApplication.lastName} a été rejetée.`,
@@ -98,7 +120,7 @@ export default function Admissions() {
           </div>
           <div>
             <p className="text-2xl font-bold">
-              {mockApplications.filter(a => a.status === 'validated').length}
+              {applications.filter(a => a.status === 'validated').length}
             </p>
             <p className="text-sm text-muted-foreground">Validées ce mois</p>
           </div>
@@ -109,7 +131,7 @@ export default function Admissions() {
           </div>
           <div>
             <p className="text-2xl font-bold">
-              {mockApplications.filter(a => a.status === 'rejected').length}
+              {applications.filter(a => a.status === 'rejected').length}
             </p>
             <p className="text-sm text-muted-foreground">Rejetées ce mois</p>
           </div>

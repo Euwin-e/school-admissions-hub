@@ -32,7 +32,7 @@ export function AgentHeader({ onMenuClick }: AgentHeaderProps) {
   };
 
   return (
-    <header className="flex h-16 items-center justify-between border-b-4 border-amber-500 bg-card px-6">
+    <header className="flex h-16 items-center justify-between border-b-4 border-bourbon bg-card px-6">
       <div className="flex items-center gap-4">
         <Button 
           variant="ghost" 
@@ -58,7 +58,7 @@ export function AgentHeader({ onMenuClick }: AgentHeaderProps) {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon" className="relative">
               <Bell className="h-5 w-5" />
-              <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-amber-600 text-[10px] font-medium text-white">
+              <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-bourbon text-[10px] font-medium text-white">
                 5
               </span>
             </Button>
@@ -86,7 +86,7 @@ export function AgentHeader({ onMenuClick }: AgentHeaderProps) {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="flex items-center gap-2 px-2">
               <Avatar className="h-8 w-8">
-                <AvatarFallback className="bg-amber-600 text-white text-xs">
+                <AvatarFallback className="bg-bourbon text-white text-xs">
                   {getUserInitials()}
                 </AvatarFallback>
               </Avatar>

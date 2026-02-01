@@ -36,7 +36,9 @@ const Connexion = () => {
             navigate("/student-dashboard");
           } else if (user.role === "agent") {
             navigate("/agent-dashboard");
-          } else if (user.role === "admin" || user.role === "director") {
+          } else if (user.role === "director") {
+            navigate("/director");
+          } else if (user.role === "admin") {
             navigate("/dashboard");
           } else {
             navigate("/dashboard");

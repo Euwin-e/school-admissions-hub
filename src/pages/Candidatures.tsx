@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Plus, Search, Filter, Eye, Edit, Trash2, MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -28,7 +28,6 @@ import {
 } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { 
-  mockApplications, 
   mockSchools, 
   mockClasses, 
   getSchoolById, 
@@ -38,6 +37,7 @@ import {
 import { Application, ApplicationStatus, Gender } from '@/types';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import { getStoredApplications } from '@/data/applicationsRepository';
 
 export default function Candidatures() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -45,6 +45,7 @@ export default function Candidatures() {
   const [schoolFilter, setSchoolFilter] = useState<string>('all');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState<Application | null>(null);
+  const [applications, setApplications] = useState<Application[]>([]);
   
   // New application form state
   const [formData, setFormData] = useState({
@@ -59,7 +60,11 @@ export default function Candidatures() {
     classId: '',
   });
 
-  const filteredApplications = mockApplications.filter((app) => {
+  useEffect(() => {
+    setApplications(getStoredApplications());
+  }, []);
+
+  const filteredApplications = applications.filter((app) => {
     const matchesSearch = 
       app.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       app.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -248,6 +253,7 @@ export default function Candidatures() {
           <SelectContent>
             <SelectItem value="all">Tous les statuts</SelectItem>
             <SelectItem value="pending">En attente</SelectItem>
+            <SelectItem value="to_validate">À valider</SelectItem>
             <SelectItem value="validated">Validé</SelectItem>
             <SelectItem value="rejected">Rejeté</SelectItem>
           </SelectContent>

@@ -11,6 +11,10 @@ const statusConfig = {
     label: 'En attente',
     className: 'status-pending',
   },
+  to_validate: {
+    label: 'À valider',
+    className: 'status-to-validate',
+  },
   validated: {
     label: 'Validé',
     className: 'status-validated',
@@ -29,6 +33,7 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
       <span className={cn(
         "h-1.5 w-1.5 rounded-full",
         status === 'pending' && "bg-warning",
+        status === 'to_validate' && "bg-info",
         status === 'validated' && "bg-success",
         status === 'rejected' && "bg-destructive"
       )} />

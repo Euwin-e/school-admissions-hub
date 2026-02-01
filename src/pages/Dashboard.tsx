@@ -268,7 +268,7 @@ export default function Dashboard() {
                   <div>
                     <p className="text-sm text-gray-600 mb-1">Total candidatures</p>
                     <p className="text-3xl font-bold text-gray-900">{stats.totalApplications}</p>
-                    <p className="text-xs text-green-600 mt-1">+12% ce mois</p>
+                    <p className="text-xs text-ochre mt-1">+12% ce mois</p>
                   </div>
                   <FileText className="h-8 w-8 text-orange-600" />
                 </div>
@@ -291,10 +291,10 @@ export default function Dashboard() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-gray-600 mb-1">Validées</p>
-                    <p className="text-3xl font-bold text-green-600">{stats.validatedApplications}</p>
-                    <p className="text-xs text-green-600 mt-1">+15% vs mois dernier</p>
+                    <p className="text-3xl font-bold text-ochre">{stats.validatedApplications}</p>
+                    <p className="text-xs text-ochre mt-1">+15% vs mois dernier</p>
                   </div>
-                  <CheckCircle className="h-8 w-8 text-green-600" />
+                  <CheckCircle className="h-8 w-8 text-ochre" />
                 </div>
               </CardContent>
             </Card>
@@ -378,9 +378,9 @@ export default function Dashboard() {
                           </td>
                           <td className="px-4 py-4">
                             <Badge className={
-                              application.status === 'validated' ? 'bg-green-100 text-green-800 border-green-300' :
-                              application.status === 'rejected' ? 'bg-red-100 text-red-800 border-red-300' :
-                              'bg-orange-100 text-orange-800 border-orange-300'
+                              application.status === 'validated' ? 'bg-ochre/10 text-ochre border-ochre' :
+                              application.status === 'rejected' ? 'bg-walnut/10 text-walnut border-walnut' :
+                              'bg-bourbon/10 text-bourbon border-bourbon'
                             }>
                               {application.status === 'validated' ? 'Validée' :
                                application.status === 'rejected' ? 'Rejetée' : 'En attente'}
@@ -427,7 +427,7 @@ export default function Dashboard() {
                         <p className="text-sm text-gray-600">Administrateur : {school.administrator}</p>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Badge className={school.isActive ? 'bg-green-100 text-green-800 border-green-300' : 'bg-gray-100 text-gray-800 border-gray-300'}>
+                        <Badge className={school.isActive ? 'bg-ochre/10 text-ochre border-ochre' : 'bg-gray-100 text-gray-800 border-gray-300'}>
                           {school.isActive ? 'Actif' : 'Inactif'}
                         </Badge>
                         <Button size="sm" variant="outline" className="border-orange-300 text-orange-700">
@@ -614,8 +614,8 @@ export default function Dashboard() {
                         <td className="px-4 py-4 text-sm text-gray-900">{exportItem.fileSize}</td>
                         <td className="px-4 py-4">
                           <Badge className={
-                            exportItem.status === 'completed' ? 'bg-green-100 text-green-800 border-green-300' :
-                            'bg-red-100 text-red-800 border-red-300'
+                            exportItem.status === 'completed' ? 'bg-ochre/10 text-ochre border-ochre' :
+                            'bg-walnut/10 text-walnut border-walnut'
                           }>
                             {exportItem.status === 'completed' ? '✓ Terminé' : '✗ Échoué'}
                           </Badge>
@@ -712,7 +712,7 @@ export default function Dashboard() {
                         <td className="px-4 py-4 text-sm text-gray-900">{log.date}</td>
                         <td className="px-4 py-4 text-sm text-gray-900">{log.ip}</td>
                         <td className="px-4 py-4">
-                          <Badge className={log.success ? 'bg-green-100 text-green-800 border-green-300' : 'bg-red-100 text-red-800 border-red-300'}>
+                          <Badge className={log.success ? 'bg-ochre/10 text-ochre border-ochre' : 'bg-walnut/10 text-walnut border-walnut'}>
                             {log.success ? '✓ Succès' : '✗ Échec'}
                           </Badge>
                         </td>

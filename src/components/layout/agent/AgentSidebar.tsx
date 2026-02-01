@@ -35,7 +35,7 @@ export function AgentSidebar({ isOpen, onToggle }: AgentSidebarProps) {
           "flex items-center gap-3 transition-all duration-300",
           !isOpen && "justify-center"
         )}>
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-600">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-bourbon">
             <FileText className="h-6 w-6 text-white" />
           </div>
           {isOpen && (
@@ -60,12 +60,12 @@ export function AgentSidebar({ isOpen, onToggle }: AgentSidebarProps) {
               className={cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200",
                 isActive 
-                  ? "bg-amber-100 text-amber-700" 
+                  ? "bg-ochre/10 text-bourbon border-l-4 border-bourbon" 
                   : "text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground",
                 !isOpen && "justify-center px-2"
               )}
             >
-              <item.icon className={cn("h-5 w-5 flex-shrink-0", isActive && "text-amber-700")} />
+              <item.icon className={cn("h-5 w-5 flex-shrink-0", isActive && "text-bourbon")} />
               {isOpen && <span>{item.label}</span>}
             </NavLink>
           );

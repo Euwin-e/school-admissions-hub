@@ -32,7 +32,7 @@ export interface Class {
   createdAt: Date;
 }
 
-export type ApplicationStatus = 'pending' | 'validated' | 'rejected';
+export type ApplicationStatus = 'pending' | 'to_validate' | 'validated' | 'rejected';
 
 export type Gender = 'male' | 'female';
 
@@ -55,6 +55,8 @@ export interface Application {
   validatedBy?: string;
   validatedAt?: Date;
   rejectionReason?: string;
+  agentMissingDocument?: string;
+  agentReviewedBy?: string;
 }
 
 export interface Document {
@@ -88,4 +90,14 @@ export interface ExportFilter {
   schoolId?: string;
   classId?: string;
   status?: ApplicationStatus;
+}
+
+export interface Notification {
+  id: string;
+  userId: string;
+  type: 'info' | 'warning' | 'error' | 'success';
+  title: string;
+  message: string;
+  read: boolean;
+  createdAt: Date;
 }

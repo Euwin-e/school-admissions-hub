@@ -9,7 +9,7 @@ export const mockUsers = [
     role: "student",
   },
   {
-    id: "user-2",
+    id: "4",
     email: "agent@example.com",
     password: "password123",
     firstName: "Marie",
@@ -17,15 +17,16 @@ export const mockUsers = [
     role: "agent",
   },
   {
-    id: "user-3",
+    id: "2",
     email: "directeur@example.com",
     password: "password123",
     firstName: "Pierre",
     lastName: "Bernard",
     role: "director",
+    schoolId: "1",
   },
   {
-    id: "user-4",
+    id: "1",
     email: "admin@example.com",
     password: "password123",
     firstName: "Admin",
@@ -48,6 +49,7 @@ export const authService = {
         firstName: user.firstName,
         lastName: user.lastName,
         role: user.role,
+        schoolId: user.schoolId,
       };
       
       // Store user in localStorage

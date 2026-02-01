@@ -3,6 +3,9 @@ import { ISMLogo } from "@/components/ISMLogo";
 import { Check, Users, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Footer } from "@/components/Footer";
+import CharterStrip from "@/components/CharterStrip";
+import { motion } from "framer-motion";
+import { fadeUp, stagger, pop } from "@/lib/animation";
 
 const Accueil = () => {
   const navigate = useNavigate();
@@ -41,34 +44,38 @@ const Accueil = () => {
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="inline-block bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+            <motion.div variants={fadeUp} className="inline-block bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
               Hackathon Campus Baobab 2026
-            </div>
-            <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">
+            </motion.div>
+            <motion.h2 variants={fadeUp} className="text-5xl md:text-6xl font-black text-gray-900 mb-6">
               Bienvenue sur <span className="text-amber-600">P.D.A.U</span>
-            </h2>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+            </motion.h2>
+            <motion.p variants={fadeUp} className="text-lg text-gray-600 mb-8 leading-relaxed">
               La plateforme moderne qui révolutionne les admissions universitaires. 
               Centralisez vos candidatures, validez en toute transparence et gérez 
               automatiquement vos effectifs par école et par classe.
-            </p>
+            </motion.p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                onClick={() => navigate("/inscription")}
-                className="bg-amber-600 hover:bg-amber-700 text-white text-lg px-8 py-6 rounded-lg font-semibold"
-              >
-                Postuler Maintenant →
-              </Button>
-              <Button 
-                onClick={() => navigate("/connexion")}
-                variant="outline" 
-                className="border-amber-600 text-amber-600 hover:bg-amber-50 text-lg px-8 py-6 rounded-lg font-semibold"
-              >
-                Se Connecter
-              </Button>
+              <motion.div variants={fadeUp} whileHover={pop.hover} whileTap={pop.tap}>
+                <Button
+                  onClick={() => navigate("/inscription")}
+                  className="bg-amber-600 hover:bg-amber-700 text-white text-lg px-8 py-6 rounded-lg font-semibold"
+                >
+                  Postuler Maintenant →
+                </Button>
+              </motion.div>
+              <motion.div variants={fadeUp} whileHover={pop.hover} whileTap={pop.tap}>
+                <Button 
+                  onClick={() => navigate("/connexion")}
+                  variant="outline" 
+                  className="border-amber-600 text-amber-600 hover:bg-amber-50 text-lg px-8 py-6 rounded-lg font-semibold"
+                >
+                  Se Connecter
+                </Button>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Features Card */}
           <div className="bg-white rounded-xl shadow-lg p-8">
@@ -131,6 +138,9 @@ const Accueil = () => {
         </div>
       </section>
 
+      {/* Charter / Info Strip */}
+      <CharterStrip />
+
       {/* Why Choose Section */}
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4">
@@ -138,8 +148,8 @@ const Accueil = () => {
             Pourquoi choisir <span className="text-amber-600">P.D.A.U</span> ?
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid md:grid-cols-3 gap-8">
+            <motion.div variants={fadeUp} className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
               <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-purple-100 mx-auto mb-6">
                 <Users className="h-8 w-8 text-purple-600" />
               </div>
@@ -149,9 +159,9 @@ const Accueil = () => {
               <p className="text-gray-600 text-center">
                 Toutes les candidatures en un seul endroit. Fini les emails dispersés.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
+            <motion.div variants={fadeUp} className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
               <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-green-100 mx-auto mb-6">
                 <Check className="h-8 w-8 text-green-600" />
               </div>
@@ -161,9 +171,9 @@ const Accueil = () => {
               <p className="text-gray-600 text-center">
                 Interface dédiée pour les directeurs avec historique complet.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
+            <motion.div variants={fadeUp} className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
               <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-blue-100 mx-auto mb-6">
                 <Download className="h-8 w-8 text-blue-600" />
               </div>
@@ -173,8 +183,8 @@ const Accueil = () => {
               <p className="text-gray-600 text-center">
                 Génération instantanée de fichiers Excel par école et classe.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 

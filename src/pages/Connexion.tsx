@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { authService } from "@/data/mockAuth";
 import { Footer } from "@/components/Footer";
+import { motion } from "framer-motion";
+import { fadeUp, stagger, pop } from "@/lib/animation";
 
 const Connexion = () => {
   const navigate = useNavigate();
@@ -90,14 +92,14 @@ const Connexion = () => {
       <section className="py-12 md:py-20">
         <div className="max-w-7xl mx-auto px-4">
           {/* Title Section */}
-          <div className="text-center mb-12">
-            <h1 className="text-5xl md:text-5xl font-black text-gray-900 mb-4">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="text-center mb-12">
+            <motion.h1 variants={fadeUp} className="text-5xl md:text-5xl font-black text-gray-900 mb-4">
               Espace de <span className="text-amber-600">Connexion</span>
-            </h1>
-            <p className="text-lg text-gray-600">
+            </motion.h1>
+            <motion.p variants={fadeUp} className="text-lg text-gray-600">
                Connectez-vous à votre espace personnel
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* Content Grid */}
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -147,13 +149,13 @@ const Connexion = () => {
 
             {/* Right Side - Form */}
             <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-10">
-              <div className="mb-8">
-                <div className="flex items-center gap-3 mb-2">
+              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="mb-8">
+                <motion.div variants={fadeUp} className="flex items-center gap-3 mb-2">
                   <span className="text-2xl">🔐</span>
                   <h2 className="text-2xl font-bold text-gray-900">Connexion</h2>
-                </div>
+                </motion.div>
 
-              </div>
+              </motion.div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Email Field */}
@@ -206,6 +208,7 @@ const Connexion = () => {
               </div>
             )}
                 {/* Submit Button */}
+                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
                 <Button
                   type="submit"
                   disabled={loading}
@@ -220,6 +223,7 @@ const Connexion = () => {
                     "Se Connecter ➜"
                   )}
                 </Button>
+              </motion.div>
 
                 {/* Divider */}
                 <div className="relative py-4">

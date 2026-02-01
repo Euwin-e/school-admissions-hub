@@ -10,6 +10,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { motion } from "framer-motion";
+import { fadeUp, stagger, pop } from "@/lib/animation";
 
 const Inscription = () => {
   const navigate = useNavigate();
@@ -113,18 +115,18 @@ const Inscription = () => {
       <section className="py-12 md:py-20">
         <div className="max-w-3xl mx-auto px-4">
           {/* Title Section */}
-          <div className="text-center mb-12">
-            <h1 className="text-5xl md:text-5xl font-black text-gray-900 mb-4">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="text-center mb-12">
+            <motion.h1 variants={fadeUp} className="text-5xl md:text-5xl font-black text-gray-900 mb-4">
               Formulaire d'<span className="text-amber-600">Inscription</span>
-            </h1>
-            <p className="text-lg text-gray-600">
+            </motion.h1>
+            <motion.p variants={fadeUp} className="text-lg text-gray-600">
               Complétez le formulaire ci-dessous pour soumettre votre candidature
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* Form Card */}
           {!submitted ? (
-            <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="bg-white rounded-xl shadow-lg p-8 md:p-12">
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Section: Informations Personnelles */}
                 <div>
@@ -248,23 +250,26 @@ const Inscription = () => {
 
                 {/* Action Buttons */}
                 <div className="flex gap-4 pt-8 border-t border-gray-200">
-                  <Button
+                  <motion.button
                     type="button"
                     onClick={handleReset}
-                    variant="outline"
-                    className="flex-1 border-amber-600 text-amber-600 hover:bg-amber-50 py-6 text-lg font-semibold"
+                    className="flex-1 border-2 border-amber-600 text-amber-600 hover:bg-amber-50 py-6 text-lg font-semibold rounded-lg transition"
+                    whileHover={pop.hover}
+                    whileTap={pop.tap}
                   >
                     Réinitialiser
-                  </Button>
-                  <Button
+                  </motion.button>
+                  <motion.button
                     type="submit"
-                    className="flex-1 bg-amber-600 hover:bg-amber-700 text-white py-6 text-lg font-semibold"
+                    className="flex-1 bg-amber-600 hover:bg-amber-700 text-white py-6 text-lg font-semibold rounded-lg transition"
+                    whileHover={pop.hover}
+                    whileTap={pop.tap}
                   >
                     Soumettre ma Candidature
-                  </Button>
+                  </motion.button>
                 </div>
               </form>
-            </div>
+            </motion.div>
           ) : (
             /* Success Message */
             <div className="bg-white rounded-xl shadow-lg p-12 text-center">

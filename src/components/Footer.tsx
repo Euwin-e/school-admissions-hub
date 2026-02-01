@@ -1,27 +1,48 @@
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Facebook, Twitter, Linkedin, Youtube, Instagram, MapPin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 export const Footer = () => {
   const navigate = useNavigate();
+  const [isMapOpen, setIsMapOpen] = useState(false);
 
   return (
     <footer className="bg-gray-900 text-gray-100">
       {/* Top Section with Map and Info */}
-      <div className="bg-gradient-to-r from-teal-700 to-teal-600 px-4 py-8">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-          {/* Left - Map Info */}
-          <div className="text-white">
+      <div className="relative h-64 md:h-80">
+        {/* Embedded Google Map as background */}
+        <iframe
+          className="absolute inset-0 w-full h-full"
+          src="https://www.google.com/maps?q=Dakar,Senegal&z=13&output=embed"
+          title="ISM Dakar - Plan"
+          loading="lazy"
+          aria-hidden="false"
+        />
+
+        {/* subtle overlay to improve contrast */}
+        <div className="absolute inset-0 bg-black/30" aria-hidden="true"></div>
+
+        <div className="relative max-w-7xl mx-auto h-full flex items-center justify-between px-4">
+          {/* Left - Map Info (overlay box) */}
+          <div className="bg-teal-900/90 text-white p-6 rounded-md w-full md:w-1/3 shadow-lg">
             <h3 className="text-2xl font-bold mb-2">Dakar</h3>
             <p className="text-sm mb-1">22 Rue 1</p>
             <p className="text-sm mb-4">Dakar</p>
-            <button className="text-amber-400 hover:text-amber-300 font-semibold underline text-sm">
+            <button onClick={() => setIsMapOpen(true)} className="text-amber-400 hover:text-amber-300 font-semibold underline text-sm">
               Voir le plan d'accès
-            </button>
+            </button> 
           </div>
 
           {/* Right - Social Media Icons */}
-          <div className="flex justify-center gap-4">
+          <div className="flex gap-4 ml-6">
             <a
               href="https://facebook.com"
               target="_blank"
@@ -212,6 +233,23 @@ export const Footer = () => {
           </p>
         </div>
       </div>
+
+      {/* Map Dialog */}
+      <Dialog open={isMapOpen} onOpenChange={setIsMapOpen}>
+        <DialogContent className="w-full max-w-6xl h-[80vh] p-0">
+          <DialogHeader>
+            <DialogTitle>Plan d'accès — ISM Dakar</DialogTitle>
+          </DialogHeader>
+          <div className="w-full h-[calc(100%-56px)]">
+            <iframe
+              title="Plan d'accès - ISM Dakar"
+              src="https://www.google.com/maps?q=ISM,Dakar,Senegal&z=16&output=embed"
+              className="w-full h-full border-0"
+              loading="lazy"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </footer>
   );
 };
